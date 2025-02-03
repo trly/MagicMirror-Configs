@@ -352,6 +352,7 @@ header { color: var(--primary); }
   overflow: hidden;
   text-overflow: ellipsis;
   flex: 1;
+  color: var(--text-primary);
 }
 
 /* Calendar Ext3 Journal (CX3J) */
@@ -362,10 +363,10 @@ header { color: var(--primary); }
 
 /* CX3J Header */
 .CX3J .dayTimeParts { display: none; }
-.CX3J .dayTimeParts .day.seq_0 { color: var(--primary); }
+.CX3J .dayTimeParts .day.seq_0 { color: var(--text-primary); }
 .CX3J .dayTimeParts .weekday,
-.CX3J .daycell .weekday { color: var(--secondary); }
-.CX3J .daycell.today .day { color: var(--primary); }
+.CX3J .daycell .weekday { color: var(--text-secondary); }
+.CX3J .daycell.today .day { color: var(--text-primary); }
 
 /* CX3J Events */
 .CX3J .event {
@@ -398,7 +399,13 @@ header { color: var(--primary); }
   overflow: visible;
   white-space: normal;
   line-height: 1.2;
+  color: var(--text-primary);
 }
+
+.CX3J .event .time.inDay {
+  color: var(--text-primary);
+}
+
 
 /* CX3J Today Highlights */
 .CX3J .headerBackground .dayBackground.today,
