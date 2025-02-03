@@ -1,0 +1,462 @@
+/* Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
+
+/* Theme Variables - Open Color */
+:root {
+  --font-comfortaa: 'Comfortaa', cursive;
+
+  /* Open Color Palette */
+
+  /* Gray */
+  --gray-0: rgb(248, 249, 250);
+  --gray-1: rgb(241, 243, 245);
+  --gray-2: rgb(233, 236, 239);
+  --gray-3: rgb(222, 226, 230);
+  --gray-4: rgb(206, 212, 218);
+  --gray-5: rgb(173, 181, 189);
+  --gray-6: rgb(134, 142, 150);
+  --gray-7: rgb(73, 80, 87);
+  --gray-8: rgb(52, 58, 64);
+  --gray-9: rgb(33, 37, 41);
+
+  /* Red */
+  --red-0: rgb(255, 245, 245);
+  --red-1: rgb(255, 227, 227);
+  --red-2: rgb(255, 201, 201);
+  --red-3: rgb(255, 168, 168);
+  --red-4: rgb(255, 135, 135);
+  --red-5: rgb(255, 107, 107);
+  --red-6: rgb(250, 82, 82);
+  --red-7: rgb(240, 62, 62);
+  --red-8: rgb(224, 49, 49);
+  --red-9: rgb(201, 42, 42);
+
+  /* Pink */
+  --pink-0: rgb(255, 240, 246);
+  --pink-1: rgb(255, 222, 235);
+  --pink-2: rgb(252, 194, 215);
+  --pink-3: rgb(250, 162, 193);
+  --pink-4: rgb(247, 131, 172);
+  --pink-5: rgb(240, 101, 149);
+  --pink-6: rgb(230, 73, 128);
+  --pink-7: rgb(214, 51, 108);
+  --pink-8: rgb(194, 37, 92);
+  --pink-9: rgb(166, 30, 77);
+
+  /* Grape */
+  --grape-0: rgb(248, 240, 252);
+  --grape-1: rgb(243, 217, 250);
+  --grape-2: rgb(238, 190, 250);
+  --grape-3: rgb(229, 153, 247);
+  --grape-4: rgb(218, 119, 242);
+  --grape-5: rgb(204, 93, 232);
+  --grape-6: rgb(190, 75, 219);
+  --grape-7: rgb(174, 62, 201);
+  --grape-8: rgb(156, 54, 181);
+  --grape-9: rgb(134, 46, 156);
+
+  /* Violet */
+  --violet-0: rgb(243, 240, 255);
+  --violet-1: rgb(229, 219, 255);
+  --violet-2: rgb(208, 191, 255);
+  --violet-3: rgb(177, 151, 253);
+  --violet-4: rgb(151, 117, 250);
+  --violet-5: rgb(132, 94, 247);
+  --violet-6: rgb(121, 80, 242);
+  --violet-7: rgb(112, 72, 232);
+  --violet-8: rgb(103, 65, 217);
+  --violet-9: rgb(95, 61, 196);
+
+  /* Indigo */
+  --indigo-0: rgb(237, 242, 255);
+  --indigo-1: rgb(219, 228, 255);
+  --indigo-2: rgb(186, 200, 255);
+  --indigo-3: rgb(145, 167, 255);
+  --indigo-4: rgb(116, 143, 252);
+  --indigo-5: rgb(92, 124, 250);
+  --indigo-6: rgb(76, 110, 245);
+  --indigo-7: rgb(66, 99, 235);
+  --indigo-8: rgb(59, 91, 219);
+  --indigo-9: rgb(54, 79, 199);
+
+  /* Blue */
+  --blue-0: rgb(231, 245, 255);
+  --blue-1: rgb(208, 235, 255);
+  --blue-2: rgb(165, 216, 255);
+  --blue-3: rgb(116, 192, 255);
+  --blue-4: rgb(77, 171, 247);
+  --blue-5: rgb(51, 154, 240);
+  --blue-6: rgb(37, 131, 224);
+  --blue-7: rgb(32, 115, 204);
+  --blue-8: rgb(28, 100, 181);
+  --blue-9: rgb(26, 92, 166);
+
+  /* Cyan */
+  --cyan-0: rgb(227, 250, 252);
+  --cyan-1: rgb(197, 246, 250);
+  --cyan-2: rgb(153, 233, 242);
+  --cyan-3: rgb(102, 217, 232);
+  --cyan-4: rgb(59, 201, 219);
+  --cyan-5: rgb(34, 184, 207);
+  --cyan-6: rgb(21, 170, 191);
+  --cyan-7: rgb(16, 152, 173);
+  --cyan-8: rgb(12, 133, 153);
+  --cyan-9: rgb(11, 114, 133);
+
+  /* Teal */
+  --teal-0: rgb(230, 252, 245);
+  --teal-1: rgb(195, 250, 232);
+  --teal-2: rgb(150, 242, 215);
+  --teal-3: rgb(99, 230, 190);
+  --teal-4: rgb(56, 217, 169);
+  --teal-5: rgb(32, 201, 151);
+  --teal-6: rgb(18, 184, 134);
+  --teal-7: rgb(12, 166, 120);
+  --teal-8: rgb(9, 146, 104);
+  --teal-9: rgb(8, 127, 91);
+
+  /* Green */
+  --green-0: rgb(235, 251, 238);
+  --green-1: rgb(211, 249, 216);
+  --green-2: rgb(178, 242, 187);
+  --green-3: rgb(140, 233, 154);
+  --green-4: rgb(105, 219, 124);
+  --green-5: rgb(81, 207, 102);
+  --green-6: rgb(64, 192, 87);
+  --green-7: rgb(55, 178, 77);
+  --green-8: rgb(47, 158, 68);
+  --green-9: rgb(43, 138, 62);
+
+  /* Lime */
+  --lime-0: rgb(244, 252, 227);
+  --lime-1: rgb(233, 250, 200);
+  --lime-2: rgb(216, 245, 162);
+  --lime-3: rgb(192, 235, 117);
+  --lime-4: rgb(169, 227, 75);
+  --lime-5: rgb(148, 216, 45);
+  --lime-6: rgb(130, 201, 30);
+  --lime-7: rgb(116, 184, 22);
+  --lime-8: rgb(102, 168, 15);
+  --lime-9: rgb(92, 148, 13);
+
+  /* Yellow */
+  --yellow-0: rgb(255, 249, 219);
+  --yellow-1: rgb(255, 243, 191);
+  --yellow-2: rgb(255, 236, 153);
+  --yellow-3: rgb(255, 224, 102);
+  --yellow-4: rgb(255, 212, 59);
+  --yellow-5: rgb(252, 196, 25);
+  --yellow-6: rgb(250, 176, 5);
+  --yellow-7: rgb(245, 159, 0);
+  --yellow-8: rgb(240, 140, 0);
+  --yellow-9: rgb(230, 119, 0);
+
+  /* Orange */
+  --orange-0: rgb(255, 244, 230);
+  --orange-1: rgb(255, 232, 204);
+  --orange-2: rgb(255, 216, 168);
+  --orange-3: rgb(255, 192, 120);
+  --orange-4: rgb(255, 169, 77);
+  --orange-5: rgb(255, 146, 43);
+  --orange-6: rgb(253, 126, 20);
+  --orange-7: rgb(247, 103, 7);
+  --orange-8: rgb(232, 89, 12);
+  --orange-9: rgb(217, 72, 15);
+
+  /* Base Colors */
+  --background: black;
+  --foreground: var(--gray-0);
+  --selection: var(--gray-7);
+  --comment: var(--gray-6);
+  --red: var(--red-6);
+  --orange: var(--orange-6);
+  --yellow: var(--yellow-6);
+  --green: var(--green-6);
+  --purple: var(--violet-6);
+  --cyan: var(--cyan-6);
+  --pink: var(--pink-6);
+  --grape: var(--grape-6);
+  --indigo: var(--indigo-6);
+  --blue: var(--blue-6);
+  --teal: var(--teal-6);
+  --lime: var(--lime-6);
+
+  /* Additional Colors */
+  --dnd: #FF5733;
+
+  /* Terminal Colors */
+  --ansi-black: var(--gray-8);
+  --ansi-bright-black: var(--gray-6);
+  --ansi-white: var(--gray-1);
+  --ansi-bright-white: var(--gray-0);
+  /* Theme */
+  --primary: var(--foreground);
+  --secondary: var(--blue);
+  --accent: var(--yellow);
+  --text-primary: var(--foreground);
+  --text-secondary: var(--comment);
+
+  background-color: var(--background);
+
+  /* Animation */
+  --animation-duration: 5s;
+  --animation-timing: ease-in-out;
+}
+
+/* Global Styles */
+body {
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-family: var(--font-comfortaa);
+}
+
+.normal { color: var(--text-primary); }
+.dimmed { color: var(--text-secondary); }
+header { color: var(--primary); }
+
+/* Layout */
+.region.bottom.bar { padding: 0 8px; }
+.module { margin-bottom: 16px; }
+.module-header {
+  font-size: 1.5em;
+  line-height: 1.4;
+  font-weight: 500;
+  text-align: left;
+}
+
+/* Clock Module */
+.clock {
+  color: var(--text-primary);
+}
+.clock .time {
+  color: var(--primary);
+  font-size: 96px;
+  line-height: 96px;
+}
+.clock .date {
+  margin-bottom: 8px;
+}
+
+.clock i.fas.fa-sun { color: var(--yellow-1); }
+
+/* Weather Module */
+.weather .weathericon {
+  font-size: 75%;
+  line-height: 65px;
+  display: inline-block;
+  -ms-transform: translate(0, -3px);
+  -webkit-transform: translate(0, -3px);
+  transform: translate(0, -3px);
+}
+
+/* Weather Icons */
+.wi-day-sunny { color: var(--yelow-1); }
+.wi-rain { color: var(--blue-1); }
+.wi-thunderstorm { color: var(--blue-1); }
+
+/* Alert Module */
+.alert { color: var(--orange); }
+
+/* Default Calendar Module */
+.calendar .title {
+  color: var(--pink);
+  font-weight: 600;
+}
+.calendar .event {
+  color: var(--green);
+}
+
+/* Calendar Ext3 Agenda (CX3A) */
+.CX3A {
+  --weekend_1_color: var(--secondary);
+  --weekend_2_color: var(--red);
+  --todayColor: var(--text-primary);
+  color: var(--text-primary);
+  max-width: 100%;
+  min-width: 100%;
+}
+
+/* CX3A Layout */
+.CX3A .cellHeaderMain .cellDate { display: none; }
+.CX3A .cellHeaderMain .cellDay { color: var(--secondary); font-size: 2em; }
+.CX3A.bodice { gap: 20px; }
+.CX3A .agenda .cell {
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
+/* CX3A Events */
+.CX3A .event {
+  margin-block-end: 15px;
+  padding-inline: 16px;
+}
+
+.CX3A .event .headline {
+  display: grid;
+  grid-template-columns: auto auto auto 1fr;
+  gap: 12px;
+  width: 100%;
+  align-items: center;
+}
+
+.CX3A .event .time {
+  display: inline-block;
+  font-size: 1.5em;
+  color: var(--primary);
+  min-width: fit-content;
+  margin-inline: 0;
+}
+
+.CX3A .event .title {
+  text-align: start;
+  font-size: 1.5em;
+  line-height: 1.4;
+  padding-inline-end: 16px;
+}
+
+.CX3A .event .symbol span { font-size: 1.5em; }
+.CX3A span.symbol.noSymbol::after { display: none; }
+
+/* CX3A Work Calendar */
+.CX3A .event.calendar_work .title,
+.CX3A .event.calendar_work .time {
+  color: var(--dnd);
+  font-weight: bold;
+}
+
+/* CX3A Hide Elements */
+.CX3A .event .description,
+.CX3A .event .location {
+  display: none;
+}
+
+/* CX3A Full Day Events */
+.CX3A .event.fullday {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  line-height: 1.2;
+}
+
+.CX3A .event.fullday .headline {
+  font-size: 0.75em;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.CX3A .event.fullday .title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+/* Calendar Ext3 Journal (CX3J) */
+.CX3J {
+  --mainBorderStyle: var(--borderSize) solid var(--selection);
+  --subBorderStyle: var(--borderSize) dotted var(--text-secondary);
+}
+
+/* CX3J Header */
+.CX3J .dayTimeParts { display: none; }
+.CX3J .dayTimeParts .day.seq_0 { color: var(--primary); }
+.CX3J .dayTimeParts .weekday,
+.CX3J .daycell .weekday { color: var(--secondary); }
+.CX3J .daycell.today .day { color: var(--primary); }
+
+/* CX3J Events */
+.CX3J .event {
+  border-color: var(--selection);
+  padding: 8px 12px;
+}
+
+.CX3J .event .headline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 24px;
+  width: 100%;
+}
+
+.CX3J .event .startTime {
+  text-align: left;
+  flex-shrink: 0;
+}
+
+.CX3J .event .endTime {
+  text-align: right;
+  margin-left: auto;
+}
+
+.CX3J .event .title {
+  flex: 1;
+  min-width: fit-content;
+  overflow: visible;
+  white-space: normal;
+  line-height: 1.2;
+}
+
+/* CX3J Today Highlights */
+.CX3J .headerBackground .dayBackground.today,
+.CX3J .cell.today,
+.CX3J .cell.today.last {
+  border-color: var(--text-secondary);
+}
+
+/* CX3J Now Indicator */
+.CX3J .nowIndicator {
+  --indicatorStyle: 1px dashed var(--yellow-1);
+}
+
+.CX3J .nowIndicator::after {
+  background-color: var(--yellow-1);
+  color: var(--background);
+}
+
+.CX3J .event.now {
+  border-color: var(--yellow-1);
+}
+
+/* CX3J Event Types */
+.CX3J .fulldayEvents .event { font-size: .75em; }
+.CX3J .main .event.single { font-size: .75em; }
+.CX3J .event.notsingle {
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+.CX3J .event.notsingle .headline { font-size: 1.5em; }
+
+/* CX3J Hide Elements */
+.CX3J .event .description,
+.CX3J .event .location {
+  display: none;
+}
+
+/* Do Not Disturb Module */
+.dnd-active {
+  color: var(--background);
+  background-color: var(--dnd);
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  padding: 20px;
+  animation: pulse var(--animation-duration) var(--animation-timing) infinite;
+  border-radius: 8px;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
