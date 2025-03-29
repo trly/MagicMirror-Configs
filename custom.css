@@ -42,8 +42,7 @@
   --color-background: var(--ctp-base);
   
   /* Font settings */
-  --font-primary: "Comfortaa";
-  --font-secondary: "Comfortaa";
+  --font-primary: "Comfortaa", sans-serif;
   --font-size: 20px;
   --font-size-xsmall: 0.75rem;
   --font-size-small: 1rem;
@@ -57,16 +56,35 @@
   --gap-body-right: 60px;
   --gap-body-bottom: 60px;
   --gap-body-left: 60px;
+  
+  /* DND settings */
+  --dnd: #FF5733;
+  --animation-duration: 2s;
+  --animation-timing: ease-in-out;
+  
+  /* Calendar colors */
+  --weekend-1-color: var(--ctp-blue);
+  --weekend-2-color: var(--ctp-red);
+  --today-color: var(--ctp-yellow);
+  
+  /* Border styles */
+  --border-main: 1px solid var(--ctp-surface1);
+  --border-sub: 1px dotted var(--ctp-surface0);
 }
 
 /* Apply base theme */
 body {
   background-color: var(--ctp-base);
   color: var(--ctp-text);
-  font-family: var(--font-primary), sans-serif;
+  font-family: var(--font-primary);
 }
 
-/* Override default classes */
+/* Ensure all text uses Comfortaa font */
+* {
+  font-family: var(--font-primary);
+}
+
+/* Text color classes */
 .dimmed {
   color: var(--ctp-subtext0);
 }
@@ -79,18 +97,16 @@ body {
   color: var(--ctp-lavender);
 }
 
+/* Font weight classes */
 .light {
-  font-family: var(--font-primary), sans-serif;
   font-weight: 300;
 }
 
 .regular {
-  font-family: var(--font-primary), sans-serif;
   font-weight: 400;
 }
 
 .bold {
-  font-family: var(--font-primary), sans-serif;
   font-weight: 700;
 }
 
@@ -104,26 +120,39 @@ header {
 .module {
   max-width: 100%;
   overflow: hidden;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  background-color: transparent;
+  padding: 15px;
+  box-shadow: 0 4px 6px rgba(17, 17, 27, 0.1);
 }
 
-/* Override the region positioning to create a 50/50 split layout */
-/* Left region takes left 50% */
+.module-header {
+  color: var(--ctp-lavender);
+  font-size: 1.2em;
+  font-weight: 600;
+  border-bottom: 1px solid var(--ctp-surface0);
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+}
+
+/* Layout regions */
+.region.left, .region.right {
+  width: 50% !important;
+  transform: none !important;
+}
+
 .region.left {
   left: 0;
-  width: 50% !important;
   right: auto !important;
-  transform: none !important;
 }
 
-/* Right region takes right 50% */
 .region.right {
   right: 0;
-  width: 50% !important;
   left: auto !important;
-  transform: none !important;
 }
 
-/* Hide center regions or repurpose them */
+/* Hide center regions */
 .region.top.center,
 .region.bottom.center {
   display: none;
@@ -139,101 +168,224 @@ header {
   margin-right: 0;
 }
 
-/* CalendarExt3Agenda customizations with Catppuccin Mocha theme */
-.CX3A {
-  min-width: unset;
-  max-width: 100%;
-  font-size: 20px !important;
-  color: var(--ctp-text);
-  --weekend_1_color: var(--ctp-blue);
-  --weekend_2_color: var(--ctp-red);
-  --todayColor: var(--ctp-yellow);
+/* Scrollbar styling */
+.CX3A .agenda::-webkit-scrollbar,
+.CX3J .body::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
 
-/* Hide description and location in agenda view */
+.CX3A .agenda::-webkit-scrollbar-track,
+.CX3J .body::-webkit-scrollbar-track {
+  background: var(--ctp-surface0);
+  border-radius: 4px;
+}
+
+.CX3A .agenda::-webkit-scrollbar-thumb,
+.CX3J .body::-webkit-scrollbar-thumb {
+  background: var(--ctp-surface2);
+  border-radius: 4px;
+}
+
+.CX3A .agenda::-webkit-scrollbar-thumb:hover,
+.CX3J .body::-webkit-scrollbar-thumb:hover {
+  background: var(--ctp-overlay0);
+}
+
+/* Common calendar component styles */
+.CX3A, .CX3J {
+  color: var(--ctp-text);
+}
+
+/* Hide description and location in both calendar views */
 .CX3A .event .description,
-.CX3A .event .location {
+.CX3A .event .location,
+.CX3J .event .description,
+.CX3J .event .location {
   display: none !important;
 }
 
-/* Simplify event display */
-.CX3A .event .headline {
-  gap: 5px;
-}
-
-.CX3A .event .title {
-  font-size: 110% !important;
+/* Event title and time styles for both calendars */
+.CX3A .event .title,
+.CX3J .event .title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   color: var(--ctp-text) !important;
   font-weight: 600 !important;
 }
 
-.CX3A .event .time {
-  font-size: 85% !important;
-  font-weight: 500 !important;
+.CX3A .event .time,
+.CX3J .event .time {
   display: inline-block !important;
+  font-weight: 500 !important;
   color: var(--ctp-subtext1) !important;
 }
 
-/* Make miniMonth more compact but readable */
-.CX3A .miniMonth {
-  font-size: 95% !important;
+/* Weekend and today styles for both calendars */
+.CX3A .miniMonth .weekend_1,
+.CX3J .daycell.weekend_1 .weekday {
+  color: var(--weekend-1-color) !important;
 }
 
-.CX3A .miniMonth .cell.today .date {
-  color: var(--ctp-yellow);
+.CX3A .miniMonth .weekend_2,
+.CX3J .daycell.weekend_2 .weekday {
+  color: var(--weekend-2-color) !important;
+}
+
+.CX3A .miniMonth .cell.today .date,
+.CX3J .daycell.today .day {
+  color: var(--today-color) !important;
   font-weight: 600;
 }
 
-.CX3A .miniMonth .weekend_1 {
-  color: var(--ctp-blue);
+/* Symbol colors for both calendars */
+.CX3A .event .headline .symbol,
+.CX3J .event .headline .symbol {
+  color: var(--calendarColor);
 }
 
-.CX3A .miniMonth .weekend_2 {
-  color: var(--ctp-red);
+/* Work calendar styling for both calendars */
+.CX3A .event.calendar_work .title,
+.CX3A .event.calendar_work .time,
+.CX3A .event.calendar_work .headline .symbol {
+  color: var(--dnd) !important;
+  font-weight: bold !important;
 }
 
+.CX3J .event.calendar_work {
+  background-color: var(--dnd) !important;
+}
+
+.CX3J .event.calendar_work .title,
+.CX3J .event.calendar_work .time {
+  color: var(--ctp-base) !important;
+  font-weight: bold !important;
+}
+
+/* Calendar 3 Agenda specific styles */
+.CX3A {
+  min-width: unset;
+  max-width: 100%;
+  font-size: 40px !important;
+  --weekend_1_color: var(--weekend-1-color);
+  --weekend_2_color: var(--weekend-2-color);
+  --todayColor: var(--today-color);
+}
+
+.CX3A .event .headline {
+  gap: 10px;
+}
+
+/* Set consistent font size for regular events */
+.CX3A .event .title {
+  font-size: 85% !important;
+}
+
+.CX3A .event .time {
+  font-size: 85% !important;
+}
+
+/* Consistent font sizes for single and fullday events */
+.CX3A .event.single .headline .title,
+.CX3A .event.single .headline .time,
+.CX3A .event.single .headline .symbol,
+.CX3A .event.fullday .headline .title,
+.CX3A .event.fullday .headline .time,
+.CX3A .event.fullday .headline .symbol {
+  font-size: 85% !important;
+}
+
+.CX3A .event {
+  margin-bottom: 12px !important;
+  padding: 8px !important;
+}
+
+.CX3A .miniMonth {
+  font-size: 120% !important;
+}
+
+.CX3A .miniMonth .navigation {
+  font-size: 120% !important;
+  font-weight: 600;
+  color: var(--ctp-lavender);
+}
+
+.CX3A .miniMonth .monthName {
+  font-size: 130% !important;
+  font-weight: 600;
+  color: var(--ctp-lavender);
+}
+
+/* Fullday events styling */
 .CX3A .cellBody .fullday .event {
-  font-size: 100% !important;
-  padding: 3px 6px;
-  border-radius: 8px;
+  font-size: 100% !important; /* Base font size for the container */
+  padding: 6px 12px;
+  border-radius: 12px;
 }
 
 .CX3A .agenda {
-  max-height: 600px;
+  max-height: 800px;
   mask-image: linear-gradient(to bottom, transparent, var(--ctp-base) 10%);
   -webkit-mask-image: -webkit-linear-gradient(90deg, transparent, var(--ctp-base) 10%);
 }
 
+.CX3A .cell.weekend_1 .cellHeaderMain *,
+.CX3A .cell.weekend_2 .cellHeaderMain *,
+.CX3A .cell.today .cellHeaderMain * {
+  color: inherit;
+}
+
 .CX3A .cell.weekend_1 .cellHeaderMain * {
-  color: var(--ctp-blue);
+  color: var(--weekend-1-color);
 }
 
 .CX3A .cell.weekend_2 .cellHeaderMain * {
-  color: var(--ctp-red);
+  color: var(--weekend-2-color);
 }
 
 .CX3A .cell.today .cellHeaderMain * {
-  color: var(--ctp-yellow);
+  color: var(--today-color);
 }
 
-/* CalendarExt3Journal customizations with Catppuccin Mocha theme */
+.CX3A .agenda .header {
+  font-size: 130% !important;
+  font-weight: 600;
+  color: var(--ctp-lavender);
+  border-bottom: 1px solid var(--ctp-surface0);
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+
+.CX3A .event.current {
+  filter: saturate(1.2);
+  font-weight: 600;
+  box-shadow: 0 0 5px rgba(180, 190, 254, 0.3);
+  border-left: 4px solid var(--ctp-lavender);
+}
+
+.CX3A .event .headline .symbol {
+  font-size: 120% !important;
+}
+
+.CX3A .event .headline .calendarName {
+  font-size: 70% !important;
+  color: var(--ctp-subtext0) !important;
+  font-style: italic;
+}
+
+/* Calendar 3 Journal specific styles */
 .CX3J {
   --moduleHeight: 60vh;
   --moduleWidth: 100%;
   --indexWidth: 40px;
   --eventHeight: 20px;
   --borderSize: 1px;
-  --mainBorderStyle: var(--borderSize) solid var(--ctp-surface1);
-  --subBorderStyle: var(--borderSize) dotted var(--ctp-surface0);
+  --mainBorderStyle: var(--border-main);
+  --subBorderStyle: var(--border-sub);
+  --indicatorStyle: 1px dashed var(--ctp-red);
 }
 
-/* Simplify event display in journal */
-.CX3J .event .description,
-.CX3J .event .location {
-  display: none !important;
-}
-
-/* Increase font sizes for better readability */
 .CX3J .event {
   font-size: 0.7em !important;
 }
@@ -248,8 +400,6 @@ header {
 
 .CX3J .event .headline .title {
   font-size: 1.3em !important;
-  color: var(--ctp-text) !important;
-  font-weight: 600 !important;
 }
 
 .CX3J .event.notsingle {
@@ -268,11 +418,9 @@ header {
   color: var(--ctp-subtext0);
 }
 
-/* Improve day headers */
 .CX3J .daycell .day {
   font-size: 1.2em !important;
   font-weight: 600 !important;
-  color: var(--ctp-text) !important;
 }
 
 .CX3J .daycell .weekday {
@@ -280,36 +428,11 @@ header {
   color: var(--ctp-subtext1) !important;
 }
 
-.CX3J .daycell.today .day {
-  color: var(--ctp-yellow) !important;
-}
-
-.CX3J .daycell.weekend_1 .weekday {
-  color: var(--ctp-blue) !important;
-}
-
-.CX3J .daycell.weekend_2 .weekday {
-  color: var(--ctp-red) !important;
-}
-
-/* Make sure time is always visible */
-.CX3J .event .time {
-  display: inline-block !important;
-  font-weight: 500 !important;
-  color: var(--ctp-subtext1) !important;
-}
-
-/* Now indicator styling */
-.CX3J .nowIndicator {
-  --indicatorStyle: 1px dashed var(--ctp-red);
-}
-
 .CX3J .nowIndicator::after {
   background-color: var(--ctp-yellow);
   color: var(--ctp-base);
 }
 
-/* Today cell highlighting */
 .CX3J .headerBackground .dayBackground.today {
   border-top: 2px solid var(--ctp-yellow);
   border-left: 2px solid var(--ctp-yellow);
@@ -325,9 +448,57 @@ header {
   border-bottom: 2px solid var(--ctp-yellow);
 }
 
-/* Responsive adjustments for different screen orientations */
+.CX3J .event.continueToNext {
+  border-bottom: 2px dotted var(--ctp-surface2);
+}
+
+.CX3J .event.continueFromPrev {
+  border-top: 2px dotted var(--ctp-surface2);
+}
+
+/* DND styling */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(243, 139, 168, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(243, 139, 168, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(243, 139, 168, 0);
+  }
+}
+
+.dnd-active {
+  color: var(--ctp-base);
+  background-color: var(--dnd);
+  font-size: 2.5em;
+  font-weight: bold;
+  text-align: center;
+  padding: 25px;
+  animation: pulse var(--animation-duration) var(--animation-timing) infinite;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(243, 139, 168, 0.5);
+  margin: 20px 0;
+  letter-spacing: 1px;
+}
+
+.dnd-active:before {
+  content: "⚠️ ";
+}
+
+.dnd-active:after {
+  content: " ⚠️";
+}
+
+/* Text shadow for better readability */
+.CX3A .event.fullday .event .title,
+.CX3J .event.single .title {
+  text-shadow: 0 0 2px rgba(17, 17, 27, 0.7);
+}
+
+/* Responsive adjustments */
 @media screen and (orientation: portrait) {
-  /* Portrait mode adjustments */
   :root {
     --gap-body-top: 30px;
     --gap-body-right: 20px;
@@ -336,17 +507,17 @@ header {
     --gap-modules: 10px;
   }
   
-  /* In portrait mode, stack regions vertically instead of side by side */
-  .region.left {
+  .region.left, .region.right {
     width: 100% !important;
     height: 50% !important;
+  }
+  
+  .region.left {
     top: 0;
     bottom: auto;
   }
   
   .region.right {
-    width: 100% !important;
-    height: 50% !important;
     top: 50%;
     bottom: auto;
   }
@@ -356,13 +527,16 @@ header {
     --indexWidth: 30px;
   }
   
+  .CX3A {
+    font-size: 30px !important;
+  }
+  
   .CX3A .agenda {
     max-height: 40vh;
   }
 }
 
 @media screen and (orientation: landscape) {
-  /* Landscape mode adjustments */
   .CX3J {
     --moduleHeight: 70vh;
   }
@@ -377,40 +551,4 @@ header {
 .CX3J .event .headline *:not(.title):not(.time) {
   display: inline-block;
   font-size: 0.8em;
-}
-
-/* Ensure good contrast for event titles */
-.CX3A .event .title,
-.CX3J .event .title {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-/* Improve visibility of current events */
-.CX3A .event.current {
-  filter: saturate(1.2);
-  font-weight: 600;
-  box-shadow: 0 0 5px rgba(180, 190, 254, 0.3); /* Lavender shadow */
-}
-
-/* Calendar color adjustments */
-.CX3A .event.fullday .event .title,
-.CX3J .event.single .title {
-  text-shadow: 0 0 2px rgba(17, 17, 27, 0.7); /* Crust shadow for better readability */
-}
-
-/* Event symbol colors */
-.CX3A .event .headline .symbol,
-.CX3J .event .headline .symbol {
-  color: var(--calendarColor);
-}
-
-/* Improve event borders */
-.CX3J .event.continueToNext {
-  border-bottom: 2px dotted var(--ctp-surface2);
-}
-
-.CX3J .event.continueFromPrev {
-  border-top: 2px dotted var(--ctp-surface2);
 }
