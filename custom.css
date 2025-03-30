@@ -1,6 +1,10 @@
 /* Custom CSS for MagicMirror with custom color theme and Comfortaa font */
+
 /* Import Comfortaa font */
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
+
+/* Import Weather Icons font */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css');
 
 /* Custom color palette */
 :root {
@@ -11,15 +15,17 @@
   --imperial-red: #ff3347ff;
   --magnolia: #f3f0f9ff;
   
+  /* Font settings */
+  --font-comfortaa: 'Comfortaa', cursive;
+  
   /* MagicMirror variables */
   --color-text: var(--jet);
   --color-text-dimmed: #666666;
   --color-text-bright: var(--plum);
   --color-background: var(--magnolia);
   
-  /* Font settings */
-  --font-primary: "Comfortaa";
-  --font-secondary: "Comfortaa";
+  --font-primary: var(--font-comfortaa);
+  --font-secondary: var(--font-comfortaa);
   --font-size: 20px;
   --font-size-xsmall: 0.75rem;
   --font-size-small: 1rem;
@@ -33,27 +39,30 @@
   --gap-body-right: 60px;
   --gap-body-bottom: 60px;
   --gap-body-left: 60px;
+  
+  /* Theme */
+  --primary: var(--jet);
+  --secondary: var(--zomp);
+  --accent: var(--plum);
+  --text-primary: var(--jet);
+  --text-secondary: var(--color-text-dimmed);
+  
+  /* Animation */
+  --animation-duration: 5s;
+  --animation-timing: ease-in-out;
 }
 
-/* Apply base theme */
+/* Global Styles */
 body {
   background-color: var(--magnolia);
-  color: var(--jet);
+  color: var(--text-primary);
   font-family: var(--font-primary), sans-serif;
 }
 
 /* Override default classes */
-.dimmed {
-  color: #666666;
-}
-
-.normal {
-  color: var(--jet);
-}
-
-.bright {
-  color: var(--plum);
-}
+.normal { color: var(--text-primary); }
+.dimmed { color: var(--text-secondary); }
+.bright { color: var(--plum); }
 
 .light {
   font-family: var(--font-primary), sans-serif;
@@ -80,6 +89,14 @@ header {
 .module {
   max-width: 100%;
   overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.module-header {
+  font-size: 1.5em;
+  line-height: 1.4;
+  font-weight: 500;
+  text-align: left;
 }
 
 /* Override the region positioning to create a 50/50 split layout */
@@ -115,6 +132,79 @@ header {
   margin-right: 0;
 }
 
+.region.bottom.bar { 
+  padding: 0 8px; 
+}
+
+/* Clock Module */
+.clock {
+  color: var(--text-primary);
+}
+
+.clock .time {
+  color: var(--primary);
+  font-size: 96px;
+  line-height: 96px;
+}
+
+.clock .date {
+  margin-bottom: 8px;
+}
+
+/* Weather Module - Fix icon rendering */
+.weathericon,
+.wi {
+  font-family: 'weathericons' !important;
+  font-weight: normal !important;
+  font-style: normal !important;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Weather icon colors */
+.wi-day-sunny { color: var(--plum) !important; }
+.wi-night-clear { color: var(--plum) !important; }
+.wi-rain, .wi-day-rain, .wi-night-rain { color: var(--zomp) !important; }
+.wi-snow, .wi-day-snow, .wi-night-snow { color: var(--magnolia) !important; text-shadow: 0 0 2px var(--jet); }
+.wi-thunderstorm, .wi-day-thunderstorm, .wi-night-thunderstorm { color: var(--imperial-red) !important; }
+.wi-cloudy, .wi-day-cloudy, .wi-night-cloudy { color: var(--jet) !important; }
+.wi-fog, .wi-day-fog, .wi-night-fog { color: var(--color-text-dimmed) !important; }
+
+/* Fix for light class specifically on weather icons */
+span.light.weathericon,
+span.light.wi {
+  font-family: 'weathericons' !important;
+  font-weight: normal !important;
+  color: var(--jet) !important;
+}
+
+.weather .weathericon {
+  font-size: 75%;
+  line-height: 65px;
+  display: inline-block;
+  -ms-transform: translate(0, -3px);
+  -webkit-transform: translate(0, -3px);
+  transform: translate(0, -3px);
+}
+
+/* Alert Module */
+.alert { 
+  color: var(--imperial-red); 
+}
+
+/* Default Calendar Module */
+.calendar .title {
+  color: var(--plum);
+  font-weight: 600;
+}
+
+.calendar .event {
+  color: var(--zomp);
+}
+
 /* CalendarExt3Agenda customizations with new color theme */
 .CX3A {
   min-width: unset;
@@ -126,28 +216,91 @@ header {
   --todayColor: var(--plum);
 }
 
+/* CX3A Layout */
+.CX3A .cellHeaderMain .cellDate { display: none; }
+.CX3A .cellHeaderMain .cellDay { color: var(--zomp); font-size: 2em; }
+.CX3A.bodice { gap: 20px; }
+.CX3A .agenda .cell {
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
 /* Hide description and location in agenda view */
 .CX3A .event .description, 
 .CX3A .event .location {
   display: none !important;
 }
 
-/* Simplify event display */
+/* CX3A Events */
+.CX3A .event {
+  margin-block-end: 15px;
+  padding-inline: 16px;
+}
+
 .CX3A .event .headline {
-  gap: 5px;
+  display: grid;
+  grid-template-columns: auto auto auto 1fr;
+  gap: 12px;
+  width: 100%;
+  align-items: center;
+}
+
+.CX3A .event .time {
+  display: inline-block;
+  font-size: 1.5em;
+  color: var(--jet);
+  min-width: fit-content;
+  margin-inline: 0;
+  font-weight: 500 !important;
 }
 
 .CX3A .event .title {
-  font-size: 110% !important;
+  text-align: start;
+  font-size: 1.5em;
+  line-height: 1.4;
+  padding-inline-end: 16px;
   color: var(--jet) !important;
   font-weight: 600 !important;
 }
 
-.CX3A .event .time {
-  font-size: 85% !important;
-  font-weight: 500 !important;
-  display: inline-block !important;
-  color: #666666 !important;
+.CX3A .event .symbol span { 
+  font-size: 1.5em; 
+}
+
+.CX3A span.symbol.noSymbol::after { 
+  display: none; 
+}
+
+/* CX3A Work Calendar */
+.CX3A .event.calendar_work .title,
+.CX3A .event.calendar_work .time {
+  color: var(--imperial-red) !important;
+  font-weight: bold;
+}
+
+/* CX3A Full Day Events */
+.CX3A .event.fullday {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  line-height: 1.2;
+}
+
+.CX3A .event.fullday .headline {
+  font-size: 0.75em;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.CX3A .event.fullday .title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  color: var(--jet) !important;
 }
 
 /* Make miniMonth more compact but readable */
@@ -200,8 +353,15 @@ header {
   --eventHeight: 20px;
   --borderSize: 1px;
   --mainBorderStyle: var(--borderSize) solid var(--zomp);
-  --subBorderStyle: var(--borderSize) dotted #666666;
+  --subBorderStyle: var(--borderSize) dotted var(--color-text-dimmed);
 }
+
+/* CX3J Header */
+.CX3J .dayTimeParts { display: none; }
+.CX3J .dayTimeParts .day.seq_0 { color: var(--jet); }
+.CX3J .dayTimeParts .weekday,
+.CX3J .daycell .weekday { color: var(--color-text-dimmed); }
+.CX3J .daycell.today .day { color: var(--plum) !important; }
 
 /* Simplify event display in journal */
 .CX3J .event .description, 
@@ -209,9 +369,11 @@ header {
   display: none !important;
 }
 
-/* Increase font sizes for better readability */
+/* CX3J Events */
 .CX3J .event {
   font-size: 0.7em !important;
+  border-color: var(--zomp);
+  padding: 8px 12px;
 }
 
 .CX3J .event.single {
@@ -222,10 +384,24 @@ header {
   border: 1px solid var(--zomp);
 }
 
+.CX3J .event .headline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 24px;
+  width: 100%;
+}
+
 .CX3J .event .headline .title {
   font-size: 1.3em !important;
   color: var(--jet) !important;
   font-weight: 600 !important;
+  flex: 1;
+  min-width: fit-content;
+  overflow: visible;
+  white-space: normal;
+  line-height: 1.2;
 }
 
 .CX3J .event.notsingle {
@@ -233,6 +409,12 @@ header {
   padding: 2px 6px !important;
   font-size: 0.85em !important;
   border-radius: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.CX3J .event.notsingle .headline {
+  font-size: 1.5em;
 }
 
 .CX3J .event.notsingle .headline .title {
@@ -241,7 +423,7 @@ header {
 
 .CX3J .index.gridCell {
   font-size: 0.7em !important;
-  color: #666666;
+  color: var(--color-text-dimmed);
 }
 
 /* Improve day headers */
@@ -253,11 +435,7 @@ header {
 
 .CX3J .daycell .weekday {
   font-size: 0.9em !important;
-  color: #666666 !important;
-}
-
-.CX3J .daycell.today .day {
-  color: var(--plum) !important;
+  color: var(--color-text-dimmed) !important;
 }
 
 .CX3J .daycell.weekend_1 .weekday {
@@ -272,7 +450,21 @@ header {
 .CX3J .event .time {
   display: inline-block !important;
   font-weight: 500 !important;
-  color: #666666 !important;
+  color: var(--color-text-dimmed) !important;
+}
+
+.CX3J .event .startTime {
+  text-align: left;
+  flex-shrink: 0;
+}
+
+.CX3J .event .endTime {
+  text-align: right;
+  margin-left: auto;
+}
+
+.CX3J .event .time.inDay {
+  color: var(--jet) !important;
 }
 
 /* Now indicator styling */
@@ -283,6 +475,10 @@ header {
 .CX3J .nowIndicator::after {
   background-color: var(--plum);
   color: var(--magnolia);
+}
+
+.CX3J .event.now {
+  border-color: var(--imperial-red);
 }
 
 /* Today cell highlighting */
@@ -299,6 +495,58 @@ header {
 
 .CX3J .cell.today.last {
   border-bottom: 2px solid var(--plum);
+}
+
+/* CX3J Event Types */
+.CX3J .fulldayEvents .event { 
+  font-size: .75em; 
+}
+
+.CX3J .main .event.single { 
+  font-size: .75em; 
+}
+
+/* Improve event borders */
+.CX3J .event.continueToNext {
+  border-bottom: 2px dotted var(--zomp);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.CX3J .event.continueFromPrev {
+  border-top: 2px dotted var(--zomp);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* Event symbol colors */
+.CX3A .event .headline .symbol,
+.CX3J .event .headline .symbol {
+  color: var(--calendarColor);
+}
+
+/* Do Not Disturb Module */
+.dnd-active {
+  color: var(--magnolia);
+  background-color: var(--imperial-red);
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  padding: 20px;
+  animation: pulse var(--animation-duration) var(--animation-timing) infinite;
+  border-radius: 8px;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .5;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /* Responsive adjustments for different screen orientations */
@@ -376,54 +624,47 @@ header {
   text-shadow: 0 0 2px rgba(51, 51, 51, 0.7); /* Jet shadow for better readability */
 }
 
-/* Event symbol colors */
-.CX3A .event .headline .symbol,
-.CX3J .event .headline .symbol {
-  color: var(--calendarColor);
+/* Calendar-specific styling */
+
+/* Family calendar - bright blue */
+.CX3A .event.calendar_family .title,
+.CX3A .event.calendar_family .time,
+.CX3J .event.calendar_family .title,
+.CX3J .event.calendar_family .time {
+  color: #2A9DF4 !important;
+  font-weight: bold;
 }
 
-/* Improve event borders */
-.CX3J .event.continueToNext {
-  border-bottom: 2px dotted var(--zomp);
+.CX3A .event.calendar_family.fullday,
+.CX3J .event.calendar_family.fullday,
+.CX3J .event.calendar_family.single {
+  background-color: rgba(42, 157, 244, 0.2) !important;
+  border-color: #2A9DF4 !important;
 }
 
-.CX3J .event.continueFromPrev {
-  border-top: 2px dotted var(--zomp);
+.CX3A .event.calendar_family .symbol,
+.CX3J .event.calendar_family .symbol {
+  color: #2A9DF4 !important;
 }
 
-/* Weather icon fixes - make them visible against light background */
-.weathericon {
-  color: var(--jet) !important; /* Use the dark Jet color for weather icons */
-  opacity: 0.9; /* Ensure full opacity */
+/* Work calendar - imperial red */
+.CX3A .event.calendar_work .title,
+.CX3A .event.calendar_work .time,
+.CX3J .event.calendar_work .title,
+.CX3J .event.calendar_work .time {
+  color: #FF5733 !important;
+  font-weight: bold;
 }
 
-/* If you need to target specific weather conditions */
-.wi-rain, 
-.wi-day-rain,
-.wi-night-rain {
-  color: var(--zomp) !important; /* Make rain icons blue-green */
+.CX3A .event.calendar_work.fullday,
+.CX3J .event.calendar_work.fullday,
+.CX3J .event.calendar_work.single {
+  background-color: rgba(255, 87, 51, 0.2) !important;
+  border-color: #FF5733 !important;
 }
 
-.wi-snow,
-.wi-day-snow,
-.wi-night-snow {
-  color: var(--plum) !important; /* Make snow icons purple */
+.CX3A .event.calendar_work .symbol,
+.CX3J .event.calendar_work .symbol {
+  color: #FF5733 !important;
 }
 
-.wi-thunderstorm,
-.wi-day-thunderstorm,
-.wi-night-thunderstorm {
-  color: var(--imperial-red) !important; /* Make thunderstorm icons red */
-}
-
-/* Ensure weather icons are properly sized */
-.weathericon {
-  font-size: 1em; /* Adjust size as needed */
-  display: inline-block;
-}
-
-/* Fix for light class specifically on weather icons */
-span.light.weathericon {
-  font-weight: normal; /* Override the light font weight */
-  color: var(--jet) !important; /* Ensure color is applied */
-}
