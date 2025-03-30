@@ -390,3 +390,40 @@ header {
 .CX3J .event.continueFromPrev {
   border-top: 2px dotted var(--zomp);
 }
+
+/* Weather icon fixes - make them visible against light background */
+.weathericon {
+  color: var(--jet) !important; /* Use the dark Jet color for weather icons */
+  opacity: 0.9; /* Ensure full opacity */
+}
+
+/* If you need to target specific weather conditions */
+.wi-rain, 
+.wi-day-rain,
+.wi-night-rain {
+  color: var(--zomp) !important; /* Make rain icons blue-green */
+}
+
+.wi-snow,
+.wi-day-snow,
+.wi-night-snow {
+  color: var(--plum) !important; /* Make snow icons purple */
+}
+
+.wi-thunderstorm,
+.wi-day-thunderstorm,
+.wi-night-thunderstorm {
+  color: var(--imperial-red) !important; /* Make thunderstorm icons red */
+}
+
+/* Ensure weather icons are properly sized */
+.weathericon {
+  font-size: 1em; /* Adjust size as needed */
+  display: inline-block;
+}
+
+/* Fix for light class specifically on weather icons */
+span.light.weathericon {
+  font-weight: normal; /* Override the light font weight */
+  color: var(--jet) !important; /* Ensure color is applied */
+}
